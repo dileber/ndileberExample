@@ -1,6 +1,8 @@
 package com.example.ndileber.ndilebertest.mvp;
 
+import android.annotation.TargetApi;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.text.TextUtils;
@@ -14,7 +16,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.drcosu.ndileber.dileberui.activity.AppDebugModeActivity;
 import com.drcosu.ndileber.mvp.ubase.UBaseActivity;
+import com.drcosu.ndileber.tools.permissions.PermissionsManager;
+import com.drcosu.ndileber.tools.permissions.PermissionsResultAction;
 import com.drcosu.ndileber.tools.statusbar.UStatusBar;
 import com.drcosu.ndileber.utils.ActivityUtils;
 import com.drcosu.ndileber.utils.UToolBar;
@@ -23,6 +28,9 @@ import com.example.ndileber.ndilebertest.mvp.chart.ChartFragment;
 import com.example.ndileber.ndilebertest.mvp.chart.ChartPresenter;
 import com.example.ndileber.ndilebertest.mvp.home.HomeFragment;
 import com.example.ndileber.ndilebertest.mvp.home.HomePresenter;
+import com.example.ndileber.ndilebertest.mvp.login.LoginActivity;
+import com.example.ndileber.ndilebertest.mvp.setting.SettingsActivity;
+import com.example.ndileber.ndilebertest.mvp.utils.UtilsFragment;
 import com.jakewharton.rxbinding.view.RxView;
 
 import rx.functions.Action1;
@@ -94,6 +102,7 @@ public class MainActivity extends UBaseActivity<MainPresenter>
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            SettingsActivity.start(this);
             return true;
         }
 
@@ -115,16 +124,40 @@ public class MainActivity extends UBaseActivity<MainPresenter>
         } else if (id == R.id.nav_slideshow) {
 
         } else if (id == R.id.nav_manage) {
+            ActivityUtils.replaceFragment(this.getSupportFragmentManager(),R.id.main_layout, UtilsFragment.newInstance());
 
         } else if (id == R.id.nav_share) {
-
+            AppDebugModeActivity.start(this,getString(R.string.app_name),R.drawable.ic_info_black_24dp);
         } else if (id == R.id.nav_send) {
-
+            LoginActivity.start(this);
         }
 
         DrawerLayout drawer = findView(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @TargetApi(23)
+    private void requestPermissions() {
+        PermissionsManager.getInstance().requestAllManifestPermissionsIfNecessary(this, new PermissionsResultAction() {
+            @Override
+            public void onGranted() {
+                //toast("权限OK",Toast.LENGTH_SHORT);
+            }
+
+            @Override
+            public void onDenied(String permission) {
+                //toast(permission+"没有权限，需要用户在设置中添加权限",Toast.LENGTH_SHORT);
+            }
+        });
+    }
+
+
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
+                                           @NonNull int[] grantResults) {
+        PermissionsManager.getInstance().notifyPermissionsChange(permissions, grantResults);
     }
 
 }

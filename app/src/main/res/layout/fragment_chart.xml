@@ -2,12 +2,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="com.example.ndileber.ndilebertest.mvp.chart.ChartFragment">
 
+    <com.drcosu.ndileber.dileberui.timetable.singleline.CalenderSingleView
+    android:id="@+id/calenderSingleView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:calender_end_page="6"
+    app:calender_start="1"
+    app:calender_start_page="4"
+    tools:layout_editor_absoluteX="8dp"
+    tools:layout_editor_absoluteY="0dp">
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Button" />
+    </com.drcosu.ndileber.dileberui.timetable.singleline.CalenderSingleView>
+
 </FrameLayout>

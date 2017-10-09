@@ -1,2 +1,3 @@
-include ':app',":dileber"
+include ':app', ':dileberui',":dileber"
+project(':dileberui').projectDir = new File(settingsDir, "../../git/dileberui")
 project(':dileber').projectDir = new File(settingsDir, "../ndileber/ndileber")

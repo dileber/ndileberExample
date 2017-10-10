@@ -89,6 +89,7 @@ public class HomeFragment extends UBaseFragment<HomePresenter> implements HomeCo
                 });
                 break;
             case R.id.button2:
+                loading();
                 if(x!=null&&splashhandler!=null){
                     x.postDelayed(splashhandler, 3000);
                 }
@@ -116,11 +117,21 @@ public class HomeFragment extends UBaseFragment<HomePresenter> implements HomeCo
         }
     }
 
+
     @Override
-    public void onDestroy() {
-        super.onDestroy();
+    public void onPause() {
+        super.onPause();
         if(x!=null&&splashhandler!=null){
             x.removeCallbacks(splashhandler);
+        }
+    }
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if(x!=null&&splashhandler!=null){
+            x.postDelayed(splashhandler, 3000);
         }
     }
 }

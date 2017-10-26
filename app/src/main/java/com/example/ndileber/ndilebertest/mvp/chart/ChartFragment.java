@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.drcosu.ndileber.dileberui.timetable.moreline.CalenderMoreView;
 import com.drcosu.ndileber.dileberui.timetable.singleline.CalenderSingleView;
 import com.drcosu.ndileber.dileberui.timetable.singleline.CalenderViewPageAdapter;
 import com.drcosu.ndileber.mvp.ubase.UBaseFragment;
@@ -53,9 +54,11 @@ public class ChartFragment extends UBaseFragment<ChartPresenter> implements  Cha
         return new ChartPresenter(this);
     }
     CalenderSingleView calenderSingleView;
+    CalenderMoreView calenderMoreView;
     @Override
     protected void initView(Bundle savedInstanceState) {
         calenderSingleView = (CalenderSingleView) findView(R.id.calenderSingleView);
+        calenderMoreView = findView(R.id.calenderMoreView);
         List<Date> temp = new ArrayList<>();
         temp.add(new Date());
         Calendar calendar = Calendar.getInstance();
@@ -64,6 +67,19 @@ public class ChartFragment extends UBaseFragment<ChartPresenter> implements  Cha
 
         calenderSingleView.setGuanxiDate(temp);
         calenderSingleView.setDateSelectedDelegate(new CalenderViewPageAdapter.DateSelectedDelegate() {
+            @Override
+            public void onDateSelected(View view, Date date) {
+                Snackbar.make(view, UTime.getDateStr(UTime.Pattern.y_m_d_h_m_s,date), Snackbar.LENGTH_INDEFINITE)
+                        .setAction(android.R.string.ok, new View.OnClickListener() {
+                            @Override
+                            @TargetApi(Build.VERSION_CODES.M)
+                            public void onClick(View v) {
+                            }
+                        }).show();
+            }
+        });
+        calenderMoreView.setGuanxiDate(temp);
+        calenderMoreView.setDateSelectedDelegate(new CalenderViewPageAdapter.DateSelectedDelegate() {
             @Override
             public void onDateSelected(View view, Date date) {
                 Snackbar.make(view, UTime.getDateStr(UTime.Pattern.y_m_d_h_m_s,date), Snackbar.LENGTH_INDEFINITE)

@@ -29,6 +29,7 @@ import com.example.ndileber.ndilebertest.mvp.chart.ChartPresenter;
 import com.example.ndileber.ndilebertest.mvp.home.HomeFragment;
 import com.example.ndileber.ndilebertest.mvp.home.HomePresenter;
 import com.example.ndileber.ndilebertest.mvp.login.LoginActivity;
+import com.example.ndileber.ndilebertest.mvp.main.MainFragment;
 import com.example.ndileber.ndilebertest.mvp.setting.SettingsActivity;
 import com.example.ndileber.ndilebertest.mvp.utils.UtilsFragment;
 import com.jakewharton.rxbinding.view.RxView;
@@ -68,6 +69,8 @@ public class MainActivity extends UBaseActivity<MainPresenter>
 
         NavigationView navigationView = findView(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        ActivityUtils.replaceFragment(this.getSupportFragmentManager(),R.id.main_layout, MainFragment.newInstance());
+
     }
 
 

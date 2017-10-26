@@ -1,20 +1,29 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
     tools:context="com.example.ndileber.ndilebertest.mvp.chart.ChartFragment">
 
     <com.drcosu.ndileber.dileberui.timetable.singleline.CalenderSingleView
-    android:id="@+id/calenderSingleView"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    app:calender_end_page="6"
-    app:calender_start="1"
-    app:calender_start_page="4"
-    tools:layout_editor_absoluteX="8dp"
-    tools:layout_editor_absoluteY="0dp">
+        android:id="@+id/calenderSingleView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:calender_end_page="6"
+        app:calender_start="1"
+        app:calender_start_page="4">
 
     </com.drcosu.ndileber.dileberui.timetable.singleline.CalenderSingleView>
 
-</FrameLayout>
+    <com.drcosu.ndileber.dileberui.timetable.moreline.CalenderMoreView
+        android:id="@+id/calenderMoreView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:calender_end_page="6"
+        app:calender_start="1"
+        app:calender_start_page="4">
+
+    </com.drcosu.ndileber.dileberui.timetable.moreline.CalenderMoreView>
+
+</LinearLayout>

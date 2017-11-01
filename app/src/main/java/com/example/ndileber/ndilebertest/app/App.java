@@ -4,6 +4,7 @@ import com.drcosu.ndileber.app.SApplication;
 import com.drcosu.ndileber.tools.annotation.SDefaultFont;
 import com.drcosu.ndileber.tools.annotation.SFontdType;
 import com.drcosu.ndileber.tools.net.RetCallback;
+import com.example.ndileber.ndilebertest.BuildConfig;
 import com.mcxiaoke.packer.helper.PackerNg;
 
 
@@ -24,6 +25,7 @@ public class App extends SApplication {
 // 或者使用 PackerNg.getMarket(Context,defaultValue)
 // 之后就可以使用了，比如友盟可以这样设置
 //        AnalyticsConfig.setChannel(market);
+        String userId = BuildConfig.USER_ID;
     }
 
     @Override

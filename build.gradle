@@ -6,7 +6,7 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:2.3.3'
-
+        classpath "com.mcxiaoke.gradle:packer-ng:1.0.8"
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
@@ -20,4 +20,13 @@ allprojects {
 
 task clean(type: Delete) {
     delete rootProject.buildDir
+}
+
+ext{
+    PACKER_VERSION = "1.0.8"
+    deps = [
+            'tools'      : [
+                    'packer_helper'  : "com.mcxiaoke.gradle:packer-helper:${PACKER_VERSION}"
+            ]
+    ]
 }
